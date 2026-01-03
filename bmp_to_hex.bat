@@ -1,0 +1,1 @@
+python pre_rgb.py input_RGB.bmp input_pixels_rgb.hex 640 480
