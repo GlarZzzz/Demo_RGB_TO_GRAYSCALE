@@ -20,20 +20,20 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module Demo_RGB_TO_GRAYSCALE_Design_Source(
-    input            aclk,        
-    input            aresetn,    
+    input wire           aclk,        
+    input wire           aresetn,    
 
-    input            s_axis_tvalid, 
-    input  [23:0]    s_axis_tdata,  
-    input            s_axis_tlast,  
-    input            s_axis_tuser,  
-    output           s_axis_tready, 
+    input  wire           s_axis_tvalid, 
+    input  wire [23:0]    s_axis_tdata,  
+    input  wire           s_axis_tlast,  
+    input  wire           s_axis_tuser,  
+    output wire          s_axis_tready, 
 
-    output reg       m_axis_tvalid, 
-    output reg [23:0] m_axis_tdata,  
-    output reg       m_axis_tlast,  
-    output reg       m_axis_tuser,  
-    input            m_axis_tready  
+    output wire       m_axis_tvalid, 
+    output wire [23:0] m_axis_tdata,  
+    output wire       m_axis_tlast,  
+    output wire       m_axis_tuser,  
+    input  wire          m_axis_tready  
     );
     
 wire [7:0] w_red;
@@ -79,11 +79,10 @@ always @(posedge aclk or negedge aresetn) begin
     end
 end
 
-always @(*) begin
-   m_axis_tvalid = m_axis_tvalid_reg;
-   m_axis_tdata  = m_axis_tdata_reg;
-   m_axis_tlast  = m_axis_tlast_reg;
-   m_axis_tuser  = m_axis_tuser_reg;
-end
+
+ assign   m_axis_tvalid = m_axis_tvalid_reg;
+ assign   m_axis_tdata  = m_axis_tdata_reg;
+ assign   m_axis_tlast  = m_axis_tlast_reg;
+ assign   m_axis_tuser  = m_axis_tuser_reg;
 
 endmodule
